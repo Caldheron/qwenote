@@ -1,0 +1,51 @@
+/* Qwenote — ajustements propres à l'appli, par-dessus style.css (Phanéïa, inchangé). */
+html, body { height: 100%; }
+body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; }
+.app-shell { height: 100vh; height: 100dvh; min-height: 0; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+.banner { align-items: center; padding-top: 14px; }
+.qn-brand { font-family: 'Cinzel', serif; font-weight: 700; font-size: 21px; letter-spacing: .14em; color: var(--gold); text-shadow: 0 0 14px rgba(201,162,39,.4); }
+.qn-sub { font-style: italic; color: var(--parchment-dim); font-size: 13px; }
+.btn-forged { font-size: 11px; min-height: 42px; padding: 8px 14px; display: inline-flex; align-items: center; justify-content: center; }
+.btn-forged:disabled { opacity: .45; cursor: not-allowed; }
+.btn-forged.wine { background: linear-gradient(180deg, #5a2a36, #3a1a23); border-color: var(--wine); }
+.btn-forged.ember { background: linear-gradient(180deg, #5a3320, #3a1f11); border-color: var(--ember); }
+button.tab { background: none; border: 0; border-bottom: 2px solid transparent; min-height: 46px; font-size: 11px; }
+button.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
+.tab .badge { margin-left: 4px; color: var(--parchment-dim); font-family: 'EB Garamond', serif; font-size: 12px; }
+.qn-main { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 14px 18px 32px; font-size: 17px; color: var(--parchment); }
+.qn-update { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 8px 14px; background: rgba(201,162,39,.12); border-bottom: 1px solid var(--gold); font-size: 14px; }
+.qn-update[hidden] { display: none; }
+.qn-sync { display: flex; align-items: center; gap: 8px; font-size: 13px; font-style: italic; color: var(--parchment-dim); margin-bottom: 12px; }
+.qn-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-metal); flex: none; }
+.qn-dot.on { background: var(--verdigris); box-shadow: 0 0 6px var(--verdigris); }
+.qn-reminder { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding: 10px 12px; background: rgba(179,85,43,.14); border: 1px solid var(--ember); border-radius: 4px; font-size: 14px; font-style: italic; }
+.qn-reminder span { flex: 1; }
+.qn-input, .qn-editor { width: 100%; background: var(--panel); border: 1px solid var(--border-metal); border-radius: 4px; color: var(--parchment); font-family: 'EB Garamond', serif; font-size: 17px; padding: 11px 12px; }
+.qn-input:focus, .qn-editor:focus { outline: none; border-color: var(--gold); }
+.qn-title { font-family: 'Cinzel', serif; font-size: 16px; letter-spacing: .04em; }
+.qn-editor { margin-top: 10px; min-height: 42dvh; resize: none; line-height: 1.55; }
+.qn-cat { display: flex; align-items: center; gap: 10px; width: 100%; min-height: 48px; padding: 0 14px; margin-bottom: 6px; background: var(--panel-raised); border: 1px solid var(--border-metal); border-radius: 4px; color: var(--parchment); cursor: pointer; font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: .05em; text-align: left; }
+.qn-cat.open { border-color: var(--gold); }
+.qn-cat .cnt { margin-left: auto; font: 14px 'EB Garamond', serif; color: var(--parchment-dim); }
+.qn-cat .car { font-size: 11px; color: var(--parchment-dim); }
+.qn-list { margin: 0 0 10px 10px; }
+.quest-scroll { margin-bottom: 7px; }
+.quest-title { font-size: 16px; }
+.quest-tag { font-size: 12.5px; }
+.quest-title i, .untitled { color: var(--parchment-dim); font-style: italic; font-weight: 400; }
+.qn-h { font-family: 'Cinzel', serif; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--gold); margin: 18px 0 10px; text-align: center; }
+.qn-h:first-child { margin-top: 4px; }
+.qn-mu { font-size: 14px; font-style: italic; color: var(--parchment-dim); line-height: 1.5; }
+.qn-row { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-top: 12px; }
+.qn-row .grow { flex: 1; }
+.qn-chip { font-family: 'Cinzel', serif; font-size: 11px; color: var(--gold); background: rgba(201,162,39,.1); border: 1px solid var(--gold); border-radius: 10px; padding: 3px 11px; }
+.qn-set { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border-metal); font-size: 16px; }
+.qn-set small { display: block; font-size: 13px; font-style: italic; color: var(--parchment-dim); }
+.qn-card { background: var(--panel-raised); border: 1px solid var(--border-metal); border-radius: 4px; padding: 12px; margin-bottom: 9px; }
+.qn-card.trash { border-color: var(--wine); }
+.back-btn { position: static; margin: 0 0 12px; padding: 10px 12px; font-size: 11px; }
+.modal-sheet { max-height: 80%; padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px)); }
+.modal-sheet h3 { color: var(--gold); letter-spacing: .06em; }
+.theme-choice { font-size: 16px; }
+.qn-toast { position: fixed; left: 50%; bottom: calc(26px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); z-index: 60; background: linear-gradient(180deg, var(--gold), #8a6e1c); color: var(--obsidian); font-family: 'Cinzel', serif; font-size: 12px; padding: 9px 16px; border-radius: 3px; opacity: 0; transition: opacity .2s; pointer-events: none; max-width: 90vw; text-align: center; }
+.qn-toast.on { opacity: 1; }
