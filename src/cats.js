@@ -1,4 +1,4 @@
-// Les 14 catégories de Qwenote sont figées dans le code (décision du 08/11/2026).
+// Les 14 catégories de Codex sont figées dans le code (décision du 08/11/2026).
 // Pour en modifier la liste : changer ce fichier, incrémenter CATS_VERSION, publier une nouvelle version.
 export const CATS_VERSION = 1;
 

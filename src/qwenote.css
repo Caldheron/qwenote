@@ -1,4 +1,4 @@
-/* Qwenote — ajustements propres à l'appli, par-dessus style.css (Phanéïa, inchangé). */
+/* Codex — ajustements propres à l'appli, par-dessus style.css (Phanéïa, inchangé). */
 html, body { height: 100%; }
 body { overscroll-behavior: none; -webkit-tap-highlight-color: transparent; }
 .app-shell { height: 100vh; height: 100dvh; min-height: 0; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
@@ -17,7 +17,9 @@ button.tab.active { color: var(--gold); border-bottom-color: var(--gold); }
 .qn-update[hidden] { display: none; }
 .qn-sync { display: flex; align-items: center; gap: 8px; font-size: 13px; font-style: italic; color: var(--parchment-dim); margin-bottom: 12px; }
 .qn-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--border-metal); flex: none; }
-.qn-dot.on { background: var(--verdigris); box-shadow: 0 0 6px var(--verdigris); }
+.qn-dot.on, .qn-dot.sync { background: var(--verdigris); box-shadow: 0 0 6px var(--verdigris); }
+.qn-dot.wait { background: var(--gold); box-shadow: 0 0 6px var(--gold); }
+.qn-dot.off { background: var(--ember); box-shadow: 0 0 6px var(--ember); }
 .qn-reminder { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; padding: 10px 12px; background: rgba(179,85,43,.14); border: 1px solid var(--ember); border-radius: 4px; font-size: 14px; font-style: italic; }
 .qn-reminder span { flex: 1; }
 .qn-input, .qn-editor { width: 100%; background: var(--panel); border: 1px solid var(--border-metal); border-radius: 4px; color: var(--parchment); font-family: 'EB Garamond', serif; font-size: 17px; padding: 11px 12px; }

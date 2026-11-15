@@ -10,9 +10,9 @@ export default defineConfig({
       registerType: 'prompt', // bandeau « Nouvelle version disponible »
       includeAssets: ['apple-touch-icon.png', 'icon-192.png'],
       manifest: {
-        name: 'Qwenote',
-        short_name: 'Qwenote',
-        description: 'Notes Markdown hors ligne, miroir de Qwenaëlle',
+        name: 'Codex',
+        short_name: 'Codex',
+        description: 'Notes Markdown hors ligne, miroir de Céleste',
         lang: 'fr',
         start_url: './',
         scope: './',

@@ -33,5 +33,5 @@ export function download(filename, data, type) {
   setTimeout(() => URL.revokeObjectURL(url), 4000);
 }
 
-export const jsonName = () => `qwenote-sauvegarde-${dateStamp()}.json`;
-export const zipName = () => `qwenote-markdown-${dateStamp()}.zip`;
+export const jsonName = () => `codex-sauvegarde-${dateStamp()}.json`;
+export const zipName = () => `codex-markdown-${dateStamp()}.zip`;
