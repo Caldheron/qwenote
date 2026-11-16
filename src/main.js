@@ -18,7 +18,7 @@ import { syncNow, syncStatus } from './sync.js';
 
 const $ = (id) => document.getElementById(id);
 const main = $('main');
-const APP_VERSION = '1.1.0';
+const APP_VERSION = '1.2.0';
 
 let db, store;
 const ui = { open: null, q: '' };
@@ -293,6 +293,7 @@ async function start() {
   await route();
   document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible') runSync({ quiet: true }); });
   runSync({ quiet: true });
+  setInterval(() => { if (document.visibilityState === 'visible') runSync({ quiet: true }); }, 60000);   // récupère les changements faits sur le PC
 }
 
 const updateSW = registerSW({

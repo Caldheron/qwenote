@@ -46,7 +46,20 @@ const key = (s) => s.all().map((n) => `${n.id}|${n.title}|${n.content}|${n.delet
 assert.equal(key(A.store), key(B.store));
 assert.equal((await syncStatus(A)).state, 'sync');
 
+// sens PC → téléphone : notes créées, modifiées puis mises à la corbeille depuis Céleste (éditeur central)
+const api = (m, u, b) => fetch(process.env.CELESTE_URL + u, { method: m, headers: { 'Content-Type': 'application/json' }, body: b ? JSON.stringify(b) : undefined }).then((r) => r.json());
+const pcNote = (await api('POST', '/api/notes', { title: 'Écrite sur le PC', content: 'première ligne', category: 'Écriture' })).note;
+await syncNow(A); assert.equal(A.store.get(pcNote.id).content, 'première ligne'); assert.equal(A.store.get(pcNote.id).category, 'Écriture');
+const up = await api('PUT', '/api/notes/' + pcNote.id, { content: 'première ligne\nseconde ligne', rev: pcNote.rev });
+assert.equal(up.ok, true); await syncNow(A); assert.equal(A.store.get(pcNote.id).content, 'première ligne\nseconde ligne');
+await wait(5); await A.store.update(pcNote.id, { content: 'modifiée sur le téléphone' }); await syncNow(A);   // le téléphone répond
+assert.equal((await api('GET', '/api/notes/' + pcNote.id)).content, 'modifiée sur le téléphone');
+await api('POST', '/api/notes/' + pcNote.id + '/corbeille'); await syncNow(A); assert.ok(A.store.get(pcNote.id).deletedAt);
+await api('POST', '/api/notes/' + pcNote.id + '/restaurer'); await syncNow(A); assert.equal(A.store.get(pcNote.id).deletedAt, null);
+// la liste des notes de Céleste contient bien celle-ci (la recherche des outils s'appuie sur la même base)
+assert.ok((await api('GET', '/api/notes')).notes.some((n) => n.title === 'Écrite sur le PC'));
+
 // mauvaise clé : braise, rien n'est perdu
 await A.db.setMeta('syncKey', 'mauvaise');
-r = await syncNow(A); assert.equal(r.ok, false); assert.equal((await syncStatus(A)).state, 'off'); assert.equal(A.store.live().length, 1);
-console.log('E2E ok : synchro, deux conflits, corbeille, convergence, clé refusée');
+r = await syncNow(A); assert.equal(r.ok, false); assert.equal((await syncStatus(A)).state, 'off'); assert.equal(A.store.live().length, 2);
+console.log('E2E ok : synchro, deux conflits, corbeille, convergence, sens PC → téléphone (création, modification, corbeille, restauration), clé refusée');

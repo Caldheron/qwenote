@@ -1,23 +1,16 @@
-# Codex v1.1.0 (ex-Qwenote) — synchro avec Céleste
+# Codex v1.2.0 (ex-Qwenote)
 
-Ce dossier ne contient que les **fichiers modifiés** : copie-les par-dessus ton dépôt (mêmes chemins), puis `npm test` et `npm run build`.
+Ce dossier ne contient que les **fichiers modifiés** : copie-les par-dessus ton dépôt (mêmes chemins), puis `npm test`, `npm run build` et publie comme d'habitude.
 Fichiers inchangés (non fournis) : `src/db.js`, `src/util.js`, `src/zip.js`, `src/phaneia.css`, `test/core.test.js`, `package.json`, `public/`.
 
-## Nouveautés
-- **`src/sync.js`** (nouveau) : synchro avec Céleste. Notes envoyées = celles dont la version a changé depuis la dernière synchro (suivi note par note, sans dépendre des horloges) ; notes reçues appliquées sans jamais écraser une note que tu viens de modifier pendant la synchro.
-- **Réglages** : adresse de Céleste, **clé de synchro** (affichée dans Céleste, médaillon Codex), boutons Enregistrer et Synchroniser. L'adresse doit être en `https://`.
-- **Déclencheurs** : à l'ouverture, au retour sur l'appli, 4 s après un enregistrement, suppression ou restauration, et via le bouton.
-- **Voyant** : vert = synchronisé ; doré = changements en attente ; braise = non configuré, Céleste injoignable ou clé refusée.
-- **Conflit** (note modifiée des deux côtés) : la plus récente gagne, l'autre version arrive en corbeille « … (conflit) », et une carte sur l'accueil te prévient (bouton « Compris »).
-- **Restaurer une note** met à jour sa date de modification (nécessaire pour que la synchro voie la restauration).
-- **Renommage** : Qwenote → Codex, Qwenaëlle → Céleste dans les textes, le manifeste et les noms de sauvegarde (`codex-sauvegarde-…json`). Initiale « C » provisoire dans le médaillon, en attendant ton icône.
+## Nouveautés de la v1.2.0
+- **Icône Codex** en haut à gauche, à la place de la lettre « C » (le médaillon de ton fichier d'icônes, version circulaire).
+- **Synchro régulière** : en plus de l'ouverture, du retour sur l'appli, des enregistrements et du bouton, Codex se synchronise **toutes les minutes** quand l'appli est visible. C'est ce qui fait arriver sur le téléphone les notes créées ou modifiées sur le PC (sens PC → téléphone).
 
-## À ne pas changer
-- Le nom de la base IndexedDB reste `qwenote` (la renommer ferait « disparaître » tes notes du téléphone).
-- Les sauvegardes JSON gardent `app: "qwenote"` ; l'import accepte aussi `"codex"`. Tes anciennes sauvegardes restent lisibles.
-- Le dépôt peut garder le nom `qwenote` : l'adresse GitHub Pages ne change pas.
-- Toutes tes PWA sur `caldheron.github.io` partagent le même espace de stockage : Clepsydre devra utiliser un autre nom de base.
+## À propos du sens PC → téléphone
+Jusqu'ici, ce sens ne pouvait rien transmettre : **Céleste ne pouvait ni créer ni modifier de note** (les notes y étaient en lecture seule). Avec Céleste v1.7.0, l'éditeur de notes du PC écrit dans la base ; Codex les récupère à la synchro suivante. Le test de bout en bout (`test/e2e-celeste.mjs`) joue le scénario complet : création, modification, retour du téléphone, corbeille, restauration.
 
-## Tests
-`npm test` : 19 tests (12 existants + 7 de synchro). `test/e2e-celeste.mjs` : deux téléphones simulés contre un vrai service Céleste
-(`CELESTE_URL=http://127.0.0.1:7860 CELESTE_KEY=<clé de data/sync_key.txt> node test/e2e-celeste.mjs`).
+## Rappels
+- Le nom de la base IndexedDB reste `qwenote` (la renommer ferait « disparaître » tes notes du téléphone). Les sauvegardes JSON gardent `app: "qwenote"` (l'import accepte aussi `"codex"`).
+- Les **icônes PNG de l'installation PWA** (`public/icon-192.png`, `icon-512.png`, `icon-512-maskable.png`, `apple-touch-icon.png`) ne sont pas modifiées : remplace-les par les tiennes.
+- `npm test` : 19 tests. `test/e2e-celeste.mjs` : deux téléphones simulés contre un vrai Céleste (`CELESTE_URL=http://127.0.0.1:7860 CELESTE_KEY=<clé de data/sync_key.txt> node test/e2e-celeste.mjs`).
